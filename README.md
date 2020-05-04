@@ -1,1 +1,1 @@
-# vscode_salesforce_snippets
+# VSCode Salesforce development snippets
