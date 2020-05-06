@@ -1,23 +1,20 @@
-# Welcome to your VS Code Extension
+# Features
 
-## What's in the folder
+This extension has useful code snippets for the following
+* Apex
+* Visualforce
+* Aura Compoennts (componnet, controller, helper,design)
+* Web Components
 
-* This folder contains all of the files necessary for your extension.
-* `package.json` - this is the manifest file that defines the location of the snippet file and specifies the language of the snippets.
-* `snippets/snippets.json` - the file containing all snippets.
+# Apex Code Snippets
 
-## Get up and running straight away
 
-* Press `F5` to open a new window with your extension loaded.
-* Create a new file with a file name suffix matching your language.
-* Verify that your snippets are proposed on intellisense.
+# Visualforce Code Snippets
 
-## Make changes
 
-* You can relaunch the extension from the debug toolbar after making changes to the files listed above.
-* You can also reload (`Ctrl+R` or `Cmd+R` on Mac) the VS Code window with your extension to load your changes.
+# Aura Components Code Snippets
 
-## Install your extension
+## Componnet
 
-* To start using your extension with Visual Studio Code copy it into the `<user home>/.vscode/extensions` folder and restart Code.
-* To share your extension with the world, read on https://code.visualstudio.com/docs about publishing an extension.
+## Controller, Helper and Design
+
