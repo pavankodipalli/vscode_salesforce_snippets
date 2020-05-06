@@ -3,6 +3,7 @@
     "displayName": "Salesforce code snippets",
     "description": "",
     "version": "0.0.1",
+    "publisher":"pavankodipalli",
     "engines": {
         "vscode": "^1.44.0"
     },
@@ -12,8 +13,12 @@
     "contributes": {
         "snippets": [
             {
+                "language": "javascript",
+                "path": "./snippets/javascript.json"
+            },
+            {
                 "language": "html",
-                "path": "./snippets/snippets.code-snippets"
+                "path": "./snippets/html.json"
             }
         ]
     }
