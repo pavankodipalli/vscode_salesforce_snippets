@@ -1,0 +1,182 @@
+--------------------
+APEX
+---------------------
+
+## Variable Declarations 
+
+#### Data types
+${1|String,Integer,Date,Boolean,DateTime,Decimal|}
+#### custom object
+${1:variableName}__c
+
+#### Primitive variable declaration
+${1|String,Integer,Date,Boolean,DateTime,Decimal,ID|}   ${1:variableName} = ${3:defaultvalue};
+
+#### string variable with default value
+String  ${1:variableName} = "${3:defaultvalue}";
+
+#### Variable initialization with getter and setter
+${1|String,Integer,Date,Boolean,DateTime,Decimal,ID|}    ${1:variableName} { get; set; }
+
+###List variable initialization with default constructor
+List<${1|String,Integer,Date,Boolean,DateTime,Decimal,ID|}> listVariable = new List<${1}>();
+
+####String list variales with 2 default values
+List<String> ${1:variableName} = new List<String>() { "${2:value1}","${3:value2}" };
+
+#### Object initialization
+${1:sObjectorClass}  ${2:variableName} = new ${1:sObjectorClass} () ;
+#### object list initialization
+List<${1:sObjectorClass}>  ${2:listVariableName} = new List<${1:sObjectorClass}> () ;
+
+
+## SOQL
+
+##x## Generic SOQL Statement
+[SELECT ${1:fieldList} 
+ FROM ${2:objName} 
+ WHERE ${3:condition} ],
+
+ ####Soql to fetch one row and init to new variable
+${1:objName}  ${2:variable}  = [SELECT ${3:fieldList} 
+                                        FROM ${1:objName} 
+                                        WHERE ${4:condition} 
+                                        LIMIT 1];
+                                        
+####Soql to fetch records and assign to list
+List<${1:objName}> ${2:variable}  =  [SELECT ${3:fieldList} 
+                                        FROM ${1:objName} 
+                                        WHERE ${4:condition} ];
+
+
+
+## Control statements
+
+#### For loop for primitive data types
+for (${1|String,Integer,Date,Boolean,DateTime,Decimal|} ${1:variable}): ${2:listVariable}) {
+    $0
+}
+
+#### For loop with inbulit soql
+-fsoql
+-or loop with inbuilt soql
+for (${1:objName} ${2:variable}: [SELECT ${3:fieldList} 
+                                        FROM ${1:objName} 
+                                        WHERE ${4:condition} ]) {
+    $0
+}
+
+#### for loop with soql List variable
+-fsoqllist
+-for loop with List array init
+List<${1:objName}>  ${2:listVariableName} = new List<${1:objName}> () ;
+${2:listVariableName} = [SELECT ${3:listVariableName} 
+                                        FROM ${1:objName} 
+                                        WHERE ${4:condition} ];
+for (${1:objName} ${5:variable}):${2:listVariableName} ) {
+    $0
+}
+
+## If else statements
+
+#### If condition
+-if
+-if condiiton
+if( ${1:condition})
+{
+    $0
+}
+
+
+#### If else
+-ife
+-if else
+if( ${1:condition})
+{
+    $0
+}
+else
+{
+    
+}
+
+#### If else if else statement
+-ifefe
+-if else if else
+if( ${1:condition})
+{
+    $0
+}
+else if(${2:elseCondition})
+{
+    
+}
+else
+{
+    
+}
+
+
+
+--------------------------
+AURA COMPONENTS
+------------------------
+--a_attr
+--Aura Iteration
+<aura:iteration items="{!v.${1:listVariableName}}" var="${1:var}">
+  ${0}
+</aura:iteration>
+
+
+--------------------------
+AURA Controller and helper
+------------------------
+--call_apex_full
+-- call apex fromcontroller
+        var ${1:actionName}= component.get("c.${2:apexMethodName}"");
+        ${1:actionName}.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                $0
+            }            
+        });
+        $A.enqueueAction(${1:actionName});   
+--callApexfull
+--call Apex from Aura controller/helper with param
+           // Apex Method
+        var action = cmp.get("c.${1:apexMethodName}");
+        action.setParams(
+                    { ${2:apexParameterName}: cmp.get("v.${3:componentVarName}") }
+                 );
+
+        // set Callback
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                // TODO: Business Logic to be executed on Success
+                 $0
+            } else if (state === "ERROR") 
+            {
+               // TODO: Business Logic to be executed on Error
+                var errors = response.getError();
+                if (errors) 
+                 {
+                    if (errors[0] && errors[0].message) {
+                       console.log("Error message: " + errors[0].message);
+                    }
+                } else {
+                    console.log("Unknown error");
+                }
+            }
+        });
+        \$A.enqueueAction(action);
+
+
+
+
+
+
+-------------
+LIST OF VALUES
+--------------
+
