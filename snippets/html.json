@@ -1,0 +1,38 @@
+{
+
+	"attribute tab": {
+		"prefix": "aattr",
+		"body": [
+		  "<aura:attribute name=\"${1:sobject}\" type=\"${2|String,Number,Date|}\" default=\"${3:defaultvalue}\"/>"
+		],
+		"description": "attribute tab"
+	  },
+
+	  "Lightning Button": {
+		"prefix": "abutton",
+		"body": [
+		  "<lightning:button variant=\"${1|base,Neutral,brand,destructive,success|}\" label=\"${2:label}\" title=\"${3:title}\" onclick=\"{!c.${4:controllerFunction}}\"/>",
+		  ""
+		],
+		"description": "Lightning Button"
+	  },
+	  "Lightning Text number": {
+		"prefix": "aNumber",
+		"body": [
+		  "<lightning:input type=\"number\" name=\"${1:name}\" label=\"${2:label}\" required=\"${3|true,false|}\" value=\"${3:value}\" />"
+		],
+		"description": "Lightning Text number"
+	  },
+
+	  "Aura iteration": {
+		"prefix": "iter",
+		"body": [
+		  "<aura:iteration items=\"{!v.${1:listVariableName}}\" var=\"${2:var}\">",
+		  "  $0",
+		  "</aura:iteration>"
+		],
+		"description": "Aura iteration"
+	  }
+	  
+	
+}

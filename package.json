@@ -2,7 +2,7 @@
     "name": "salesforce-code-snippets",
     "displayName": "Salesforce code snippets",
     "description": "",
-    "version": "0.0.1",
+    "version": "0.2",
     "publisher":"pavankodipalli",
     "engines": {
         "vscode": "^1.44.0"
@@ -19,6 +19,14 @@
             {
                 "language": "html",
                 "path": "./snippets/html.json"
+            },
+            {
+                "language": "apex",
+                "path": "./snippets/apex.json"
+            },
+            {
+                "language": "apex-anon",
+                "path": "./snippets/apex.json"
             }
         ]
     }

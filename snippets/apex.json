@@ -1,0 +1,198 @@
+{
+	"primitive variable": {
+		"prefix": "vd",
+		"body": [
+		  "${1|String,Integer,Date,Boolean,DateTime,Decimal,ID|}   ${2:variableName} = ${3:defaultvalue};"
+		],
+		"description": "variaiable declaration with defualt value"
+	  },
+	  "custom object or field": {
+		"prefix": "c",
+		"body": [
+		  "${1:variableName}__c"
+		],
+		"description": "custom object or field"
+	  },
+	
+
+	  "string variaiable declaration": {
+		"prefix": "vs",
+		"body": [
+		  "String  ${1:variableName} = \"${3:defaultvalue}\";",
+		  ""
+		],
+		"description": "string variaiable declaration"
+	  },
+
+	  "variable with get set": {
+		"prefix": "var_getset",
+		"body": [
+		  "${1|String,Integer,Date,Boolean,DateTime,Decimal,ID|}   ${2:variableName} { get; set; }",
+		  "",
+		  ""
+		],
+		"description": "variaiable declaration with getter setter"
+	  },
+	  "list specific var with default init": {
+		"prefix": "vl",
+		"body": [
+		  "List<${1|String,Integer,Date,Boolean,DateTime,Decimal,ID|}> ${2:variableName} = new List<${1}>();",
+		  ""
+		],
+		"description": "list var with default init"
+	  },
+
+	  "list string var with default value": {
+		"prefix": "vsl",
+		"body": [
+		  "List<String> ${1:variableName} = new List<String>() { \"${2:value1}\"};"
+		],
+		"description": "list string var with default value"
+	  },
+	  "Object initialization": {
+		"prefix": "vo",
+		"body": [
+		  "${1:sObjectorClass}  ${2:variableName} = new ${1:sObjectorClass} () ;"
+		],
+		"description": "Object initialization"
+	  },
+	  "object list initialization": {
+		"prefix": "vol",
+		"body": [
+		  "List<${1:sObjectorClass}>  ${2:listVariableName} = new List<${1:sObjectorClass}> () ;",
+		  ""
+		],
+		"description": "object list initialization"
+	  },
+
+"soql list": {
+	"prefix": "soql",
+	"body": [
+	  "[SELECT ${1:fieldList} ",
+	  " FROM ${2:objName} ",
+	  " WHERE ${3:condition} ]",
+	  "  "
+	],
+	"description": "soql list"
+  },
+
+  "soql one record": {
+	"prefix": "soql_one_rec",
+	"body": [
+	  "${1:objName} = FROM ${2:variable}  = [SELECT ${3:fieldList} ",
+	  "                                        FROM ${1:objName} ",
+	  "                                        WHERE ${4:condition} ",
+	  "                                        LIMIT 1];"
+	],
+	"description": "soql one record"
+  },
+  "Soql to fetch more records and assign to list": {
+	"prefix": "soql_listvar",
+	"body": [
+	  "List<${1:objName}> ${2:variable}  =  [SELECT ${3:fieldList} ",
+	  "                                      FROM ${1:objName} ",
+	  "                                      WHERE ${4:condition} ];"
+	],
+	"description": "Soql to fetch more records and assign to list"
+  },
+
+
+  "for loop for primitive data type": {
+	"prefix": "for_primitive",
+	"body": [
+	  "for (${1:dataType} ${2:variable}: ${3:listVariable}) {",
+	  "    $0",
+	  "}"
+	],
+	"description": "for loop for primitive data type"
+  },
+
+  "for loop with inbuilt soql": {
+	"prefix": "for_inline_soql",
+	"body": [
+	  "for (${1:objName} ${2:variable}: [SELECT ${3:fieldList} ",
+	  "                                  FROM ${1:objName} ",
+	  "                                  WHERE ${4:condition} ]) {",
+	  "    $0",
+	  "}"
+	],
+	"description": "for loop with inbuilt soql"
+  },
+
+
+  "for loop with List array init": {
+	"prefix": "for_new_soql",
+	"body": [
+	  "List<${1:primitive data typesobjName}>  ${2:listVariableName} = new List<${1:objName}> () ;",
+	  "${2:listVariableName} = [SELECT ${3:listVariableName} ",
+	  "                         FROM ${1:objName} ",
+	  "                         WHERE ${4:condition} ];",
+	  "for (${1:objName} ${5:variable}:${2:listVariableName} ) {",
+	  "    $0",
+	  "}"
+	],
+	"description": "for loop with List array init"
+  },
+
+  
+  "if condiiton": {
+	"prefix": "if",
+	"body": [
+	  "if( ${1:condition})",
+	  "{",
+	  "    $0",
+	  "}"
+	],
+	"description": "if condiiton"
+  },
+  "if else condiiton": {
+	"prefix": "ife",
+	"body": [
+	  "if( ${1:condition})",
+	  "{",
+	  "    $0",
+	  "}",
+	  "else",
+	  "{",
+	  "",
+	  "}"
+	],
+	"description": "if else condiiton"
+  },
+
+
+
+	  "try catch with error message": {
+		"prefix": "tc",
+		"body": [
+		  "try ",
+		  "{",
+		  "    ${1:statements} ",
+		  "} catch(DmlException e) ",
+		  "{",
+		  "    System.debug('The following exception has occurred: ' + e.getMessage());",
+		  "}"
+		],
+		"description": "try catch with error message"
+	  },
+
+
+
+
+	"System debug for variable": {
+		"prefix": "sdv",
+		"body": [
+		  "System.debug(\"   $1 = \" + $1);"
+		],
+		"description": "System debug for variable"
+	  },
+
+	  "System debug for selection": {
+		"prefix": "sds",
+		"body": [
+		  "System.debug(\" ***  $TM_SELECTED_TEXT = \" + $TM_SELECTED_TEXT );"
+		],
+		"description": "System debug for variable"
+	  }
+	  
+}

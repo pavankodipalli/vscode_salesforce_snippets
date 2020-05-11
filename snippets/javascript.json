@@ -1,8 +1,58 @@
 {
-    "Console Log":
-    {
-        "prefix": "cl",
-        "body" : ["console.log(\"${1:message}\")"],
-        "description":" console.log statement"
-    }
+  "Console Log":
+  {
+      "prefix": "cl",
+      "body" : ["console.log(\"${1:message}\");"],
+      "description":" console.log statement"
+  },
+
+
+        "invoke apex method": {
+          "prefix": "callApex",
+          "body": [
+            "        var ${1:actionName}= component.get(\"c.${2:apexMethodName}\");",
+            "        ${1:actionName}.setCallback(this, function(response) {",
+            "            var state = response.getState();",
+            "            if (state === \"SUCCESS\") {",
+            "                $0",
+            "            }            ",
+            "        });",
+            "        \\$A.enqueueAction(${1:actionName});     "
+          ],
+          "description": "invoke apex method"
+        },
+  
+        "Call Apex from Controller with params": {
+          "prefix": "call_apex_full",
+          "body": [
+            "        // Apex Method",
+            "        var ${1:actionName} = cmp.get(\"c.${2:apexMethodName}\");",
+            "        ${1:actionName}.setParams(",
+            "                    { \"${3:apexParameterName}\": cmp.get(\"v.${4:componentVarName}\") }",
+            "                 );",
+            "",
+            "        // set Callback",
+            "        ${1:actionName}.setCallback(this, function(response) {",
+            "            var state = response.getState();",
+            "            if (state === \"SUCCESS\") {",
+            "                // TODO: Business Logic to be executed on Success",
+            "                 $0",
+            "            } else if (state === \"ERROR\") ",
+            "            {",
+            "               // TODO: Business Logic to be executed on Error",
+            "                var errors = response.getError();",
+            "                if (errors) ",
+            "                 {",
+            "                    if (errors[0] && errors[0].message) {",
+            "                       console.log(\"Error message: \" + errors[0].message);",
+            "                    }",
+            "                } else {",
+            "                    console.log(\"Unknown error\");",
+            "                }",
+            "            }",
+            "        });",
+            "        \\$A.enqueueAction(${1:actionName});"
+          ],
+          "description": "Aura iteration"
+        }
 }
