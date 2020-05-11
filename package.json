@@ -2,7 +2,7 @@
     "name": "salesforce-code-snippets",
     "displayName": "Salesforce code snippets",
     "description": "",
-    "version": "0.2",
+    "version": "0.0.3",
     "publisher":"pavankodipalli",
     "engines": {
         "vscode": "^1.44.0"
